@@ -1,7 +1,9 @@
+
 #![allow(unused)]
 use clap::Parser;
 use std::fs;
 use std::io;
+use anyhow::{Context, Result};
 
 
 #[derive(Parser)]
@@ -10,9 +12,10 @@ struct Cli{
     path: std::path::PathBuf,
 }
 
-fn main()-> Result<(), Box<dyn std::error::Error> >{
+fn main()-> Result<()>{
     let args = Cli::parse();
-    let data = fs::read_to_string("hello1.txt")?;
+    let data = fs::read_to_string("hellos.txt").with_context(|| format!("could not read file `{}`", "hello.txt"))?;
+    // let data: String = fs::read_to_string("hello1.txt").map_err(|err| CustomError(format!("Error reading `{}`: {}", "hello.txt", err)))?;
     Ok(())
     
 
@@ -32,5 +35,10 @@ fn main()-> Result<(), Box<dyn std::error::Error> >{
     
   
 }
+
+#[derive(Debug)]
+struct CustomError(String);
+
+
 
 
