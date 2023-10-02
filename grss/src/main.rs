@@ -19,12 +19,12 @@ fn main() {
         
     }
 
-    // for line in data.lines(){
-    //     if line.contains(&args.pattern){
-    //         println!("{:?}", line);
-    //     }
+    for line in data.lines(){
+        if line.contains(&args.pattern){
+            println!("{:?}", line);
+        }
         
-    // }
+    }
   
 }
 
