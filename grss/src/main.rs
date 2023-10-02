@@ -12,14 +12,16 @@ struct Cli{
 
 fn main()-> Result<(), Box<dyn std::error::Error> >{
     let args = Cli::parse();
-    let data = fs::read_to_string("hello1.txt");
-
-    let result = match data {
-        Ok(content) =>content,
-        Err(err) => return Err(err.into())
-        
-    }
+    let data = fs::read_to_string("hello1.txt")?;
     Ok(())
+    
+
+    // let result = match data {
+    //     Ok(content) =>content,
+    //     Err(err) => return Err(err.into())
+        
+    // };
+    // Ok(())
 
     // for line in data.lines(){
     //     if line.contains(&args.pattern){
